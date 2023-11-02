@@ -2,22 +2,16 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
+
+	"github.com/renatomagalhaes/go-rest-api/models"
 )
 
-type Customer struct {
-	ID   int    `json:"id,string"`
-	Code string `json:"-"`
-	Name string `json:"name,omitempty"`
+func Home(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "[{\"Status\": \"OK\"}]")
 }
 
-func Home(w http.ResponseWriter, r *http.Request) {
-	listCustomers := []Customer{
-		{1, "001", "Albert"},
-		{2, "002", "Ana"},
-		{3, "003", ""},
-		{13, "013", "Paul"},
-	}
-	encoder := json.NewEncoder(w)
-	encoder.Encode(&listCustomers)
+func AllTeachers(w http.ResponseWriter, r *http.Request) {
+	json.NewEncoder(w).Encode(models.Teachers)
 }
